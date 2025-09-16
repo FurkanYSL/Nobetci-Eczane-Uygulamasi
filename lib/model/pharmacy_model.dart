@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'pharmacy_model.g.dart';
+
+@JsonSerializable()
 class Pharmacy {
   String? name;
   String? dist;
@@ -8,20 +13,10 @@ class Pharmacy {
   Pharmacy({this.name, this.dist, this.address, this.phone, this.loc});
 
   Pharmacy.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    dist = json['dist'];
-    address = json['address'];
-    phone = json['phone'];
-    loc = json['loc'];
+    _$PharmacyFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['dist'] = dist;
-    data['address'] = address;
-    data['phone'] = phone;
-    data['loc'] = loc;
-    return data;
+    return _$PharmacyToJson(this);
   }
 }
