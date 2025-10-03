@@ -12,8 +12,8 @@ class Pharmacy {
 
   Pharmacy({this.name, this.dist, this.address, this.phone, this.loc});
 
-  Pharmacy.fromJson(Map<String, dynamic> json) {
-    _$PharmacyFromJson(json);
+  factory Pharmacy.fromJson(Map<String, dynamic> json) {
+    return _$PharmacyFromJson(json);
   }
 
   Map<String, dynamic> toJson() {

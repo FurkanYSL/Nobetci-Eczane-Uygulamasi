@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nobetci_eczane_app/model/pharmacy_model.dart';
@@ -11,7 +10,7 @@ class PharmacyService {
     : dio = Dio(
         BaseOptions(
           baseUrl: _baseUrl,
-          headers: {"authorization": "${dotenv.env['API_KEY']}", "content-type": "application/json"},
+          headers: {"authorization": "apikey ${dotenv.env['API_KEY']}", "content-type": "application/json"},
         ),
       );
 

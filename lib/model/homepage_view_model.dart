@@ -43,12 +43,12 @@ abstract class HomepageViewModel extends State<HomePage> {
   Future<void> setCityDistrictFromLocaiton() async {
     final location = await locationService.getCurrentCityDistrict();
 
-    if (location != null && location[JsonSpaces.city.name] != null && location[JsonSpaces.district.name] != null) {
-      final city = location[JsonSpaces.city.name];
-      var district = location[JsonSpaces.district.name];
+    if (location != null && location[JsonSpaces.city.value] != null && location[JsonSpaces.district.value] != null) {
+      final city = location[JsonSpaces.city.value];
+      var district = location[JsonSpaces.district.value];
 
-      if (district!.contains(" ")) {
-        district = district.split(" ").last;
+      if (district!.contains(JsonSpaces.space.value)) {
+        district = district.split(JsonSpaces.space.value).last;
       }
 
       if (!cityData[city]!.contains(district)) {
@@ -80,7 +80,7 @@ abstract class HomepageViewModel extends State<HomePage> {
       final loc = pharmacy.loc;
       if (loc == null || loc.isEmpty) continue;
 
-      final parts = loc.split(",");
+      final parts = loc.split(JsonSpaces.comma.value);
       if (parts.length != 2) continue;
       final lat = double.tryParse(parts[0].trim());
       final lon = double.tryParse(parts[1].trim());
@@ -106,11 +106,11 @@ abstract class HomepageViewModel extends State<HomePage> {
     final location = await locationService.getCurrentCityDistrict();
     if (location == null) return false;
 
-    String? city = location[JsonSpaces.city.name];
-    String? district = location[JsonSpaces.district.name];
+    String? city = location[JsonSpaces.city.value];
+    String? district = location[JsonSpaces.district.value];
 
-    if (district!.contains(" ")) {
-      district = district.split(" ").last;
+    if (district!.contains(JsonSpaces.space.value)) {
+      district = district.split(JsonSpaces.space.value).last;
     }
 
     if (selectedCity!.trim() != city?.trim()) return false;
@@ -147,4 +147,19 @@ abstract class HomepageViewModel extends State<HomePage> {
   }
 }
 
-enum JsonSpaces { city, district }
+enum JsonSpaces { city, district, space, comma }
+
+extension JsonSpacesExtension on JsonSpaces {
+  String get value {
+    switch (this) {
+      case JsonSpaces.city:
+        return "city";
+      case JsonSpaces.district:
+        return "district";
+      case JsonSpaces.space:
+        return " ";
+      case JsonSpaces.comma:
+        return ",";
+    }
+  }
+}
