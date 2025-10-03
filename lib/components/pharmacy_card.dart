@@ -54,7 +54,12 @@ class PharmacyCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: 50, width: 50, child: Image.asset(AssetsPaths.pharmacyLogoPath)),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+                    child: Image.asset(AssetsPaths.pharmacyLogoPath),
+                  ),
                   SizedBox(width: 10),
                   Expanded(
                     child: Column(

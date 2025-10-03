@@ -43,9 +43,9 @@ abstract class HomepageViewModel extends State<HomePage> {
   Future<void> setCityDistrictFromLocaiton() async {
     final location = await locationService.getCurrentCityDistrict();
 
-    if (location != null && location["city"] != null && location["district"] != null) {
-      final city = location["city"];
-      var district = location["district"];
+    if (location != null && location[JsonSpaces.city.name] != null && location[JsonSpaces.district.name] != null) {
+      final city = location[JsonSpaces.city.name];
+      var district = location[JsonSpaces.district.name];
 
       if (district!.contains(" ")) {
         district = district.split(" ").last;
@@ -106,8 +106,8 @@ abstract class HomepageViewModel extends State<HomePage> {
     final location = await locationService.getCurrentCityDistrict();
     if (location == null) return false;
 
-    String? city = location["city"];
-    String? district = location["district"];
+    String? city = location[JsonSpaces.city.name];
+    String? district = location[JsonSpaces.district.name];
 
     if (district!.contains(" ")) {
       district = district.split(" ").last;
@@ -146,3 +146,5 @@ abstract class HomepageViewModel extends State<HomePage> {
     loadCityData();
   }
 }
+
+enum JsonSpaces { city, district }

@@ -21,14 +21,10 @@ class LocationService {
     Position position = await Geolocator.getCurrentPosition(
       locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
     );
-    List<Placemark> placemarks = await placemarkFromCoordinates(
-      position.latitude,
-      position.longitude,
-    );
+    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     if (placemarks.isNotEmpty) {
       String city = placemarks[0].administrativeArea ?? AppStrings.emptyString;
-      String district =
-          placemarks[0].subAdministrativeArea ?? AppStrings.emptyString;
+      String district = placemarks[0].subAdministrativeArea ?? AppStrings.emptyString;
       return {"city": city, "district": district};
     }
     return null;
@@ -52,8 +48,6 @@ class LocationService {
       return null;
     }
 
-    return Geolocator.getCurrentPosition(
-      locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
-    );
+    return Geolocator.getCurrentPosition(locationSettings: LocationSettings(accuracy: LocationAccuracy.high));
   }
 }

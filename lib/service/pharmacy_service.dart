@@ -6,12 +6,12 @@ import 'package:nobetci_eczane_app/model/pharmacy_model.dart';
 
 class PharmacyService {
   final Dio dio;
-
+  static const String _baseUrl = "https://api.collectapi.com/health/dutyPharmacy";
   PharmacyService()
     : dio = Dio(
         BaseOptions(
-          baseUrl: "https://api.collectapi.com/health/dutyPharmacy",
-          headers: {"authorization": "apikey ${dotenv.env['API_KEY']}", "content-type": "application/json"},
+          baseUrl: _baseUrl,
+          headers: {"authorization": "${dotenv.env['API_KEY']}", "content-type": "application/json"},
         ),
       );
 
