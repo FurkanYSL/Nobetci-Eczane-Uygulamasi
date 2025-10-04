@@ -10,7 +10,7 @@ class PharmacyService {
     : dio = Dio(
         BaseOptions(
           baseUrl: _baseUrl,
-          headers: {"authorization": "apikey ${dotenv.env['API_KEY']}", "content-type": "application/json"},
+          headers: {"authorization": "${dotenv.env['API_KEY']}", "content-type": "application/json"},
         ),
       );
 

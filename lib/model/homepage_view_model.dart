@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nobetci_eczane_app/constants/assets_paths.dart';
 import 'package:nobetci_eczane_app/model/pharmacy_model.dart';
 import 'package:nobetci_eczane_app/pages/homepage.dart';
@@ -30,6 +31,10 @@ abstract class HomepageViewModel extends State<HomePage> {
     setState(() {
       isLoading = !isLoading;
     });
+  }
+
+  Widget showLottie(String lottiePath) {
+    return Lottie.asset(lottiePath);
   }
 
   Future<void> loadCityData() async {
